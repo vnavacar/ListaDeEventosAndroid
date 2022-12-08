@@ -125,7 +125,7 @@ public class AltaEventos extends Activity implements View.OnClickListener {
                     etAforo.setText("");
                     etFecha.setText("");
                 } catch (ParseException pe) {
-                    Toast.makeText(this, "Formato de fecha no válido", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Formato de fecha no válido, formato esperado: dd.MM.yyyy", Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.btCancelar:

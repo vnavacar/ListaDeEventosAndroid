@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Event listing</string>
+    <string name="lb_cancelar">Cancel</string>
+    <string name="guardar">SAVE</string>
+    <string name="lb_nombre">Introduce your name</string>
+    <string name="lb_descripcion">Description of the event</string>
+    <string name="lb_direccion">Direction</string>
+    <string name="lb_precio">Event price</string>
+    <string name="lb_fecha">Date of the event</string>
+    <string name="lb_aforo">Capacity allowed</string>
+    <string name="Evento1">Cinema</string>
+    <string name="Evento1d">Watch a movie at the cinema</string>
+    <string name="modificar">Modify</string>
+    <string name="bt_alta_eventos">Sign up for the event</string>
+    <string name="eliminar">Delete</string>
+    <string name="mensaje_precio">The price is mandatory</string>
+    <string name="lb_alta">Sign up</string>
+</resources>

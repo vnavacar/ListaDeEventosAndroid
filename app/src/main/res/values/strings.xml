@@ -13,4 +13,6 @@
     <string name="eliminar">Eliminar</string>
     <string name="guardar">Guardar</string>
     <string name="mensaje_precio">El precio es obligatorio</string>
+    <string name="Evento1">Cine</string>
+    <string name="Evento1d">Ve una pelicula en el cine</string>
 </resources>

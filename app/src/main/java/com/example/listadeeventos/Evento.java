@@ -1,10 +1,6 @@
 package com.example.listadeeventos;
 
 import android.graphics.Bitmap;
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import com.example.listadeeventos.Util;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -56,6 +52,10 @@ public class Evento implements Serializable {
 
     public float getPrecio() {
         return precio;
+    }
+
+    public String getPrecioString() {
+        return "Precio: " + precio;
     }
 
     public void setPrecio(float precio) {

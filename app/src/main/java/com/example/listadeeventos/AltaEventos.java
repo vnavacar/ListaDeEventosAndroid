@@ -2,22 +2,28 @@ package com.example.listadeeventos;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
-
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 
 import java.text.ParseException;
@@ -99,7 +105,14 @@ public class AltaEventos extends Activity implements View.OnClickListener {
                     evento.setFecha(Util.parsearFecha(etFecha.getText().toString()));
                     evento.setPrecio(Float.parseFloat(etPrecio.getText().toString()));
                     evento.setAforo(Integer.parseInt(etAforo.getText().toString()));
-                    evento.setImagen(((BitmapDrawable) ibImagen.getDrawable()).getBitmap());
+                    try{
+                        evento.setImagen(((BitmapDrawable) ibImagen.getDrawable()).getBitmap());
+                    } catch (Exception e) {
+                        Log.e("Error", "Error al cargar la imagen");
+                        //evento.setImagen(getBitmap(R.drawable.ic_launcher_background));
+                        evento.setImagen(getBitmapFromVectorDrawable(this, R.drawable.ic_launcher_background));
+                    }
+
 
                     Database db = new Database(this);
                     switch (accion) {
@@ -170,5 +183,29 @@ public class AltaEventos extends Activity implements View.OnClickListener {
                     break;
             }
         }
+    }
+    private Bitmap getBitmap(int drawableRes){
+        Drawable drawable = ContextCompat.getDrawable(this, drawableRes);
+        Canvas canvas = new Canvas();
+        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+        canvas.setBitmap(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+
+        drawable.draw(canvas);
+        return bitmap;
+    }
+    public static Bitmap getBitmapFromVectorDrawable(Context context, int drawableId) {
+        Drawable drawable = ContextCompat.getDrawable(context, drawableId);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            drawable = (DrawableCompat.wrap(drawable)).mutate();
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
+                drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
     }
 }

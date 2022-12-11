@@ -17,7 +17,7 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     private List<Evento> eventos;
-    private EventoAdapter adapter;
+    private EventoAdapter2 adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
         eventos = db.getEventos();
 
         ListView lvEventos = findViewById(R.id.lvEventos);
-        adapter = new EventoAdapter(this,
+        adapter = new EventoAdapter2(this,
                 R.layout.item_evento, eventos);
         lvEventos.setAdapter(adapter);
         registerForContextMenu(lvEventos);
